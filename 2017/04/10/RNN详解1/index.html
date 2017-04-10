@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>RNN详解 | Infinite Possibility</title>
+  <title>RNN详解（一） | Infinite Possibility</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. RNN是什么RNN背后的思想是利用序列信息。在传统的神经网络中我们假设所有的输入（和输出）是相互独立的。但对很对任务而言并不成立。若想要预测句子中的下一个单词，最好知道它前面的单词。RNN之所以被称为循环是因为它们对序列中的每个元素执行相同的操作，而输出则依赖于前面的运算。另一种理解RNN的方式是它们有一个“内存”来获取迄今计算的信息。理论上RNN可以使用任意长度的信息，但实际上被限制到仅向">
+  <meta name="description" content="RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RNN详解">
+<meta property="og:title" content="RNN详解（一）">
 <meta property="og:url" content="http://yoursite.com/2017/04/10/RNN详解1/index.html">
 <meta property="og:site_name" content="Infinite Possibility">
-<meta property="og:description" content="1. RNN是什么RNN背后的思想是利用序列信息。在传统的神经网络中我们假设所有的输入（和输出）是相互独立的。但对很对任务而言并不成立。若想要预测句子中的下一个单词，最好知道它前面的单词。RNN之所以被称为循环是因为它们对序列中的每个元素执行相同的操作，而输出则依赖于前面的运算。另一种理解RNN的方式是它们有一个“内存”来获取迄今计算的信息。理论上RNN可以使用任意长度的信息，但实际上被限制到仅向">
+<meta property="og:description" content="RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/rnn.jpg">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/bidirectional-rnn.png">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/Screen-Shot-2015-09-16-at-2.21.51-PM.png">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/rnn-bptt1.png">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/rnn-bptt-with-gradients.png">
-<meta property="og:updated_time" content="2017-04-10T13:28:09.914Z">
+<meta property="og:updated_time" content="2017-04-10T15:38:50.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RNN详解">
-<meta name="twitter:description" content="1. RNN是什么RNN背后的思想是利用序列信息。在传统的神经网络中我们假设所有的输入（和输出）是相互独立的。但对很对任务而言并不成立。若想要预测句子中的下一个单词，最好知道它前面的单词。RNN之所以被称为循环是因为它们对序列中的每个元素执行相同的操作，而输出则依赖于前面的运算。另一种理解RNN的方式是它们有一个“内存”来获取迄今计算的信息。理论上RNN可以使用任意长度的信息，但实际上被限制到仅向">
+<meta name="twitter:title" content="RNN详解（一）">
+<meta name="twitter:description" content="RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。">
 <meta name="twitter:image" content="http://yoursite.com/images/RNN详解1/rnn.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Infinite Possibility" type="application/atom+xml">
@@ -163,7 +163,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      RNN详解
+      RNN详解（一）
     </h1>
   
 
@@ -176,7 +176,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="1-RNN是什么"><a href="#1-RNN是什么" class="headerlink" title="1. RNN是什么"></a>1. RNN是什么</h5><p>RNN背后的思想是利用序列信息。在传统的神经网络中我们假设所有的输入（和输出）是相互独立的。但对很对任务而言并不成立。若想要预测句子中的下一个单词，最好知道它前面的单词。RNN之所以被称为循环是因为它们对序列中的每个元素执行相同的操作，而输出则依赖于前面的运算。另一种理解RNN的方式是它们有一个“内存”来获取迄今计算的信息。理论上RNN可以使用任意长度的信息，但实际上被限制到仅向后看几步。典型的RNN看起来这样：</p>
+        <p>RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。</p>
+<a id="more"></a>
+<h5 id="1-RNN是什么"><a href="#1-RNN是什么" class="headerlink" title="1. RNN是什么"></a>1. RNN是什么</h5><p>RNN背后的思想是利用序列信息。在传统的神经网络中我们假设所有的输入（和输出）是相互独立的。但对很对任务而言并不成立。若想要预测句子中的下一个单词，最好知道它前面的单词。RNN之所以被称为循环是因为它们对序列中的每个元素执行相同的操作，而输出则依赖于前面的运算。另一种理解RNN的方式是它们有一个“内存”来获取迄今计算的信息。理论上RNN可以使用任意长度的信息，但实际上被限制到仅向后看几步。典型的RNN看起来这样：</p>
 <p><img src="/images/RNN详解1/rnn.jpg" width="500px"></p>
 <p>上面的图片展示了RNN被展开为一个全网络，即写出了整个序列的网络。比如，如果我们关心的句子有5个单词，网络就会展开为一个5层网络，每层一个词。RNN计算的公式为：</p>
 <ul>
@@ -271,13 +273,13 @@
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <img class="reward-img" src="/images/assets/alipay.jpg">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <img class="reward-img" src="/images/assets/wechatpay.jpg">
                       <span class="reward-type">微信</span>
                     </div>
                     
