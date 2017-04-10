@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>配置数学公式环境 | Infinite Possibility</title>
+  <title>Tag: Deep Learning | Infinite Possibility</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="要在hexo中用markdown写出数学公式，需要安装mathjax的插件。执行下面的代码：1$ npm install hexo-math --save 有些教程中还需在_cimfig.yml文件中配置plugins，但实测不用配置直接就是能用的。下面就可以用latex的语法在markdown文件中协数学公式了：$\alpha = \beta + \gamma$。123$$\frac&amp;#123;">
-<meta name="keywords" content="hexo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="配置数学公式环境">
-<meta property="og:url" content="http://yoursite.com/2017/04/10/配置数学公式环境/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Infinite Possibility">
+<meta property="og:url" content="http://yoursite.com/tags/Deep-Learning/index.html">
 <meta property="og:site_name" content="Infinite Possibility">
-<meta property="og:description" content="要在hexo中用markdown写出数学公式，需要安装mathjax的插件。执行下面的代码：1$ npm install hexo-math --save 有些教程中还需在_cimfig.yml文件中配置plugins，但实测不用配置直接就是能用的。下面就可以用latex的语法在markdown文件中协数学公式了：$\alpha = \beta + \gamma$。123$$\frac&amp;#123;">
-<meta property="og:updated_time" content="2017-04-10T12:58:04.424Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="配置数学公式环境">
-<meta name="twitter:description" content="要在hexo中用markdown写出数学公式，需要安装mathjax的插件。执行下面的代码：1$ npm install hexo-math --save 有些教程中还需在_cimfig.yml文件中配置plugins，但实测不用配置直接就是能用的。下面就可以用latex的语法在markdown文件中协数学公式了：$\alpha = \beta + \gamma$。123$$\frac&amp;#123;">
+<meta name="twitter:title" content="Infinite Possibility">
   
     <link rel="alternative" href="/atom.xml" title="Infinite Possibility" type="application/atom+xml">
   
@@ -154,165 +149,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-配置数学公式环境" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      配置数学公式环境
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/10/RNN详解1/" class="archive-article-date">
+  	<time datetime="2017-04-10T13:01:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/04/10/RNN详解1/">RNN详解</a>
     </h1>
   
 
-        
-        <a href="/2017/04/10/配置数学公式环境/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:14:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>要在hexo中用markdown写出数学公式，需要安装mathjax的插件。执行下面的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-math --save</div></pre></td></tr></table></figure></p>
-<p>有些教程中还需在_cimfig.yml文件中配置plugins，但实测不用配置直接就是能用的。<br>下面就可以用latex的语法在markdown文件中协数学公式了：$\alpha = \beta + \gamma$。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$$</div><div class="line">\frac&#123;\partial E\_3&#125;&#123;\partial W&#125; = \sum\_&#123;k=0&#125;^3 \frac&#123;\partial E\_3&#125;&#123;\partial \hat&#123;y&#125;\-3&#125;</div><div class="line">$$</div></pre></td></tr></table></figure></p>
-<p>显示为<br>$$<br>\frac{\partial E_3}{\partial W} = \sum_{k=0}^3 \frac{\partial E_3}{\partial \hat{y}_3}<br>$$<br>但这样就会在用一些像_这样的特殊符号的时候就会出现问题，比较好的解决方法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;% math %&#125;</div><div class="line">\begin&#123;aligned&#125;</div><div class="line">\dot&#123;x&#125; &amp; = \sigma(y-x) \\</div><div class="line">\dot&#123;y&#125; &amp; = \rho x - y - xz \\</div><div class="line">\dot&#123;z&#125; &amp; = -\beta z + xy</div><div class="line">\end&#123;aligned&#125;</div><div class="line">&#123;% endmath %&#125;</div></pre></td></tr></table></figure></p>
-<p>显示为<br><span>$$\begin{aligned}
-\dot{x} &amp; = \sigma(y-x) \\
-\dot{y} &amp; = \rho x - y - xz \\
-\dot{z} &amp; = -\beta z + xy
-\end{aligned}$$</span><!-- Has MathJax --></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/10/配置数学公式环境/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/04/10/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/04/10/RNN详解1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RNN详解</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-    <div class="duoshuo"></div>
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -335,9 +225,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
