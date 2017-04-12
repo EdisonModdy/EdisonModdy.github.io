@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/12/Git学习笔记1—入门/index.html">
 <meta property="og:site_name" content="Infinite Possibility">
 <meta property="og:description" content="Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。">
-<meta property="og:updated_time" content="2017-04-12T14:02:44.346Z">
+<meta property="og:updated_time" content="2017-04-12T15:11:26.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记1—入门">
 <meta name="twitter:description" content="Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。">
@@ -222,6 +222,9 @@
 </ul>
 <p>由于远程库是空的，因此在第一次推送<code>master</code>分支时加上<code>-u</code>参数，Git还会将本地<code>master</code>分支与远程的<code>master</code>分支关联起来，以后推送就可以使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
 <p>第一次使用Git的<code>push</code>或<code>clone</code>命令连接Github时会出现警告，没有关系。</p>
+<h5 id="3-3从远程库克隆"><a href="#3-3从远程库克隆" class="headerlink" title="3.3从远程库克隆"></a>3.3从远程库克隆</h5><p>使用<code>git clone</code>克隆一个本地库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:yourname/yourrepo.git</div></pre></td></tr></table></figure></p>
+<p>Git支持多种协议，默认的<code>git://</code>使用ssh，但也可以使用<code>https</code>等其他协议：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/yourname/yourrepo</div></pre></td></tr></table></figure></p>
+<p>但通过<code>ssh</code>支持的原生<code>git</code>协议速度最快。</p>
 
       
 
@@ -454,15 +457,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
