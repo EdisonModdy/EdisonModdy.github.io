@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Infinite Possibility</title>
+  <title>Git学习笔记1—入门 | Infinite Possibility</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Infinite Possibility">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git学习笔记1—入门">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/Git学习笔记1—入门/index.html">
 <meta property="og:site_name" content="Infinite Possibility">
+<meta property="og:description" content="Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。">
+<meta property="og:updated_time" content="2017-04-12T14:02:44.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Infinite Possibility">
+<meta name="twitter:title" content="Git学习笔记1—入门">
+<meta name="twitter:description" content="Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。">
   
     <link rel="alternative" href="/atom.xml" title="Infinite Possibility" type="application/atom+xml">
   
@@ -149,36 +154,113 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Git学习笔记1—入门" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/12/Git学习笔记1—入门/" class="archive-article-date">
-  	<time datetime="2017-04-12T13:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/12/Git学习笔记1—入门/">Git学习笔记1—入门</a>
+    <h1 class="article-title" itemprop="name">
+      Git学习笔记1—入门
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/12/Git学习笔记1—入门/" class="archive-article-date">
+  	<time datetime="2017-04-12T13:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。</p>
+<a id="more"></a>
+<p>版本系统可以自动地记录一个项目每次文件的改动，可以方便地实现与他人进行项目协作、管理和传输文件。</p>
+<p>Git是一个分布式的版本控制系统，每台机器里面都有完整的版本库，因此无需联网即可工作，也具有很高的安全性；在协同工作时仅需将各自修改推送给对方，不过一般也会有一台电脑充当“中央服务器的角色”，以方便交换修改。</p>
+<h4 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h4><p>进入所需控制项目的根目录中（也可以是空目录），执行命令<code>git init</code>即可创建一个版本库。通过<code>ls -ah</code>可以发现目录下面会多一个<code>.git</code>目录，Git用它来追踪管理版本库，务必不要手动修改。</p>
+<h5 id="1-1添加文件"><a href="#1-1添加文件" class="headerlink" title="1.1添加文件"></a>1.1添加文件</h5><p>要添加文件到目录（或者子目录）中，</p>
+<p>第一步先使用<code>git add</code>命令将文件添加到仓库中，比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add readme.md</div></pre></td></tr></table></figure></p>
+<p>第二步使用<code>git commit</code>命令将文件提交到仓库，<code>-m</code>参数后面为本次提交的说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">"Write a readme file"</span></div></pre></td></tr></table></figure></p>
+<p>需注意的是<code>commit</code>一次可以提交很多文件，因此可以多次<code>add</code>文件后再用<code>commit</code>一次提交：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add readme.md</div><div class="line">git a.h b.h</div><div class="line">git commit -m <span class="string">"add three files"</span></div></pre></td></tr></table></figure></p>
+<h5 id="1-2查看动态"><a href="#1-2查看动态" class="headerlink" title="1.2查看动态"></a>1.2查看动态</h5><p>要掌握仓库的当前状态，使用<code>git status</code>命令，它会显示文件的修改以及准备提交的状态；若要查看某个文件修改具体内容，使用<code>git diff</code>命令，它会显示这个文件修改了但还没有提交的情况，比如修改了readme.md文件；最后使用<code>git commit</code>命令提交：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git status</div><div class="line">git diff readme.md</div><div class="line">git commit -m <span class="string">"change the readme.md"</span></div></pre></td></tr></table></figure></p>
+<h4 id="2-版本回退"><a href="#2-版本回退" class="headerlink" title="2.版本回退"></a>2.版本回退</h4><p>每次<code>commit</code>，Git就会保存文件修改的一个“快照”。当误操作之后还可以从最近的一个<code>commit</code>恢复。若要看项目修改的记录，使用<code>git log</code>命令，加上<code>--pretty=oneline</code>参数，会精简地显示信息：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span></div><div class="line">git <span class="built_in">log</span> --pretty=oneline</div></pre></td></tr></table></figure></p>
+<p>但<code>log</code>命令至少会显示<code>commit id</code>（版本号）和每次的提交说明。<code>commit id</code>是SHA1计算出来的一个非常大的数字，用16进制表示。</p>
+<h5 id="2-1版本回退"><a href="#2-1版本回退" class="headerlink" title="2.1版本回退"></a>2.1版本回退</h5><p>在git中，使用<code>HEAD</code>表示当前版本，上一个版本是<code>HEAD^</code>，上上个版本是<code>HEAD^^</code>，而往上100个版本则是<code>HEAD~100</code>。要回退到上个版本，使用<code>git reset</code>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^</div></pre></td></tr></table></figure></p>
+<p>如果想返回刚才的版本，可以通过<code>git reflog</code>命令根据提交说明找到那个版本的<code>commit id</code>，假设是<code>4325678...</code>,就可以回去：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard 4325678</div></pre></td></tr></table></figure></p>
+<p>版本号写前几位即可（<code>git reflog</code>命令也只显示7位），Git会自动去找。Git回退的速度非常快，因其内部的<code>HEAD</code>指针指向当前的版本，回退的时候仅需将<code>HEAD</code>指向前要回退的版本，并更新工作区。</p>
+<h5 id="2-2工作区与缓存区"><a href="#2-2工作区与缓存区" class="headerlink" title="2.2工作区与缓存区"></a>2.2工作区与缓存区</h5><p>Git有工作区和暂存区两个概念。工作区就是能够看到的目录；隐藏的<code>.git</code>目录是版本库，其中最重要的是被称为stage（或index）的暂存区，Git自动为我们创建的<code>master</code>分支，以及指向<code>master</code>的一个指针<code>HEAD</code>。往仓库里添加文件时，<code>git add</code>会将文件修改添加到暂存区，而<code>git commit</code>则会将暂存区的所有内容提交到当前分支（所以每次修改文件后必须要有<code>git add</code>和<code>git commit</code>两步）。</p>
+<h5 id="2-3管理修改"><a href="#2-3管理修改" class="headerlink" title="2.3管理修改"></a>2.3管理修改</h5><p>必须要弄清的一点是Git跟踪并管理的并非文件，而是修改（比如文件的创建或内容的修改）。对刚才的readme.md文件，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span> some chages and save <span class="keyword">for</span> readme.md</div><div class="line">git add readme.md</div><div class="line"><span class="keyword">do</span> some changes and save <span class="keyword">for</span> readme.md again</div><div class="line">git commit -m <span class="string">"do some chages"</span></div><div class="line">git status</div><div class="line">git diff HEAD -- readme.md</div></pre></td></tr></table></figure></p>
+<p>通过此时会发现第二次修改并未被提交。回顾一下操作过程是：</p>
+<p>第一次修改 –&gt; <code>git add</code> –&gt; 第二次修改 –&gt; <code>git commit</code></p>
+<p>因为Git管理的是修改，在使用<code>git add</code>之后，工作区的第一次修改放入暂存区；但工作区的第二次修改并未放入暂存区，所以<code>git commit</code>只是将暂存区的修改提交了。也就是说每次修改，不<code>add</code>到暂存区，就不会加入到<code>commit</code>中。</p>
+<h5 id="2-4撤销修改"><a href="#2-4撤销修改" class="headerlink" title="2.4撤销修改"></a>2.4撤销修改</h5><p>可以使用<code>git checkout -- filename</code>命令来丢弃工作区d的修改，它会将工作区的这个文件回复到最近一次<code>git commit</code>或<code>git add</code>的状态；使用<code>git reset HEAD filename</code>则可以将<code>add</code>进暂存区的修改撤销掉。</p>
+<h5 id="2-5删除文件"><a href="#2-5删除文件" class="headerlink" title="2.5删除文件"></a>2.5删除文件</h5><p>在工作区中使用bash的<code>rm</code>命令删除某个文件filename后：</p>
+<p>此时如果确实要从版本库中删除它，可以使用<code>git rm</code>命令和<code>git commit</code>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm filename</div><div class="line">git commit -m <span class="string">"delete some redundant files"</span></div></pre></td></tr></table></figure></p>
+<p>若是想恢复到最新版本，可以使用：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- filename</div></pre></td></tr></table></figure></p>
+<p><code>git checkout</code>其实就是用版本库里的版本替换工作区的版本。</p>
+<h4 id="3-远程仓库"><a href="#3-远程仓库" class="headerlink" title="3.远程仓库"></a>3.远程仓库</h4><p>Git是分布式版本控制系统，同一个Git库可以分布到不同机器上，且每台机器都一样并无主次之分。不过实际中为方便代码的交换，会使用一台机器作为Git服务器，而GitHub就是专门提供Git仓库托管服务的。</p>
+<h5 id="3-1设置连接"><a href="#3-1设置连接" class="headerlink" title="3.1设置连接"></a>3.1设置连接</h5><p>注册Github帐号后，本地仓库与Github仓库之间的传输通过SSH加密，需要一些设置：</p>
+<ul>
+<li>1)创建SSH Key。在shell中输入：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"youremail.example.com"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>一路回车，即可在主目录中找到<code>.ssh</code>目录，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，即SSH Key的密钥对，前者为私钥，后者为公钥。</p>
+<ul>
+<li>2)登陆Github，打开”settings”，”SSH and GPG keys”，选择”New SSH key”，随意填title，在Key文本框里粘贴<code>id_rsa.pub</code>内容。</li>
+</ul>
+<h5 id="3-2添加远程库"><a href="#3-2添加远程库" class="headerlink" title="3.2添加远程库"></a>3.2添加远程库</h5><p>将本地库与远程库同步。</p>
+<ul>
+<li>1)首先登陆Github，点击”Create a new repo”，填入项目名称，点击”Create repository”。</li>
+<li>2)然后在本地仓库根目录下执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@github.com:yourname/yourrepo</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>添加后远程仓库的名字就是<code>origin</code>，这是Git默认叫法，也可以改成其他。</p>
+<ul>
+<li>3)用<code>git push</code>命令将本地库的所有内容推送到远程，即将当前分支<code>master</code>推送到远程。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>由于远程库是空的，因此在第一次推送<code>master</code>分支时加上<code>-u</code>参数，Git还会将本地<code>master</code>分支与远程的<code>master</code>分支关联起来，以后推送就可以使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<p>第一次使用Git的<code>push</code>或<code>clone</code>命令连接Github时会出现警告，没有关系。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>爱你么么哒<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -190,141 +272,92 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/12/Git学习笔记1—入门/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/计算图上的微积分—反向传播/" class="archive-article-date">
-  	<time datetime="2017-04-10T16:08:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/计算图上的微积分—反向传播/">计算图上的微积分—反向传播</a>
-    </h1>
+    <a href="/2017/04/11/计算图上的微积分—反向传播/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          计算图上的微积分—反向传播
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/RNN详解1/" class="archive-article-date">
-  	<time datetime="2017-04-10T13:01:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/RNN详解1/">RNN详解（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/配置数学公式环境/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:14:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/配置数学公式环境/">配置数学公式环境</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -347,8 +380,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
