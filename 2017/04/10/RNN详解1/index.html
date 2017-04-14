@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/Screen-Shot-2015-09-16-at-2.21.51-PM.png">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/rnn-bptt1.png">
 <meta property="og:image" content="http://yoursite.com/images/RNN详解1/rnn-bptt-with-gradients.png">
-<meta property="og:updated_time" content="2017-04-13T06:02:20.774Z">
+<meta property="og:updated_time" content="2017-04-14T06:55:26.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN详解（一）">
 <meta name="twitter:description" content="RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。">
@@ -183,7 +183,7 @@
         <p>RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。</p>
 <a id="more"></a>
 <h5 id="1-RNN是什么"><a href="#1-RNN是什么" class="headerlink" title="1. RNN是什么"></a>1. RNN是什么</h5><p>RNN的思想是利用序列信息。传统神经网络假设所有的输入（和输出）相互独立，但这对很多任务并不成立。若想要预测句子中的下一个单词，最好知道它前面的单词。RNN被称为“循环”是因为它们对序列中的每个元素执行相同的操作，而输出则依赖于前面的运算。可以这样理解：RNN内部有一个“存储器”来获取迄今计算的信息。理论上RNN可以使用任意长度的信息，但实际上被限制到仅向后看几步。典型的RNN看起来这样：</p>
-<p><img src="/images/RNN详解1/rnn.jpg" width="500px"></p>
+<p><img src="/images/RNN详解1/rnn.jpg" width="500px" align="middle"></p>
 <p>上图展示了RNN展开为一个全网络，即写出整个序列的网络。比如，如果我们关心的句子有5个单词，网络就会展开为一个5层网络，每层一个词。RNN计算的公式为：</p>
 <ul>
 <li>$x_t$是在时间$t$的输入。比如$x_1$可能是句中第二个词对应的独热(one-hot)向量。</li>
@@ -199,9 +199,9 @@
 <h5 id="2-训练RNN"><a href="#2-训练RNN" class="headerlink" title="2. 训练RNN"></a>2. 训练RNN</h5><p>训练RNN也使用后向传播算法，但会有一些变化。因为网络中的参数被所有的时间步共享，每个输出的梯度不仅依赖于当前步的计算，也与前面步骤有关。比如，要计算$t=4$的梯度，可能需要回溯三步并将梯度相加。这被称为依时间反向传播(BPTT)。但因为存在梯度弥散/爆炸问题，用BPTT训练的普通RNN并不能学习大范围的依赖关系，一些专门设计的RNN（像LSTM）就用来解决这些问题。</p>
 <h5 id="3-RNN扩展"><a href="#3-RNN扩展" class="headerlink" title="3. RNN扩展"></a>3. RNN扩展</h5><p>研究者们已经设计了很多精巧的RNN来解决普通RNN的问题。</p>
 <p><strong>双向RNN</strong>基于时间$t$的输出可能不仅依赖于序列前一个元素，还依赖于下一个元素的想法。比如，要预测序列中丢失的一个词语，你会想要观察左右两侧的上下文。双向RNN很简单，仅是两个RNN互相首尾堆叠。输出基于两个RNN的隐状态计算。</p>
-<p><img src="/images/RNN详解1/bidirectional-rnn.png" width="500px"></p>
+<p><img src="/images/RNN详解1/bidirectional-rnn.png" width="500px" align="middle"></p>
 <p><strong>深度（双向）RNN</strong>与双向RNN类似，仅仅是在每一步有多层网络。在实践中有更强的学习能力（但也需要很多的训练数据）。</p>
-<p><img src="/images/RNN详解1/Screen-Shot-2015-09-16-at-2.21.51-PM.png" width="500px"></p>
+<p><img src="/images/RNN详解1/Screen-Shot-2015-09-16-at-2.21.51-PM.png" width="500px" align="middle"></p>
 <p><strong>长短项记忆(LSTM)网络</strong>目前很流行，它与RNN并无根本上的不同结构，但使用不同的函数计算隐状态。LSTM中的记忆(memory)被称为单元(cell)，可以将其视为以前面状态$h_{t-1}$和当前输入$x_t$为输入的黑盒。这些单元内在决定记忆中保留（或清除）的信息。然后它们将前个状态、当前记忆和输入结合起来。事实证明这种单元可以非常高效地获取长期依赖。通过可以<a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">这篇文章</a>了解更多。</p>
 <p>接下来用python从头实现一个RNN，并用theano优化。</p>
 <h5 id="4-语言模型"><a href="#4-语言模型" class="headerlink" title="4. 语言模型"></a>4. 语言模型</h5><p>我们将会用RNN建立一个语言模型。假设有$m$个单词组成的句子，语言模型可以预测（在给定数据集中）观察到这个句子的概率：</p>
@@ -236,9 +236,9 @@
 <h5 id="9-计算损失"><a href="#9-计算损失" class="headerlink" title="9. 计算损失"></a>9. 计算损失</h5><p>使用交叉熵损失作为损失函数$L$，目标是找到$U,V,W$为训练数据最小化损失函数。假设有$N$个训练样本（文本中的单词）和$C$类（字典的规模），则预测$o$和真实标签$y$所对应的损失就是：<br>$$<br>L(y,o) = -\frac{1}{N} \sum_{n \in N} y_n \log o_n<br>$$<br>对应的程序是：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate_total_loss</span><span class="params">(self, x, y)</span>:</span></div><div class="line">    L = <span class="number">0</span></div><div class="line">    <span class="comment"># For each sentence</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> np.arange(len(y)):</div><div class="line">        o, s = self.forward_propagation(x[i])</div><div class="line">        <span class="comment"># 那个o[array, list]的作用是array和list各自对应位置的元素组成二维索引</span></div><div class="line">        <span class="comment"># 提取o中索引位置的值，共索引len(array)个，也就是得到o在原本应该是正确</span></div><div class="line">        <span class="comment"># 答案词的位置，作用其实也相当于将正确词对应的独热向量与输出作内积</span></div><div class="line">        <span class="comment"># 用在后面的测试与正确词原本应该对应的1的距离。</span></div><div class="line">        <span class="comment"># 优化目标实际上就是使得预测的结果在正确的词上面最大</span></div><div class="line">        correct_word_predictions = o[np.arange(len(y[i])), y[i]]</div><div class="line">        <span class="comment"># Add to the loss based on how off they were</span></div><div class="line">        L += <span class="number">-1</span> * np.sum(np.log(correct_word_predictions))</div><div class="line">    <span class="keyword">return</span> L</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate_loss</span><span class="params">(self, x, y)</span>:</span></div><div class="line">    <span class="comment"># Divide the total loss by the number of training examples</span></div><div class="line">    N = np.sum(len(y_i) <span class="keyword">for</span> y_i <span class="keyword">in</span> y)</div><div class="line">    <span class="keyword">return</span> self.calculate_total_loss(x,y) / N</div><div class="line"></div><div class="line">RNNNumpy.calculate_total_loss = calculate_total_loss</div><div class="line">RNNNumpy.calculate_loss = calculate_loss</div></pre></td></tr></table></figure>
 <h5 id="10-依时间梯度下降"><a href="#10-依时间梯度下降" class="headerlink" title="10. 依时间梯度下降"></a>10. 依时间梯度下降</h5><p>这里将$o_t$表示为$\hat{y}_t$，$L(y,o)$表示为$E(y,\hat{y})$，于是有<br>$$<br>\begin{aligned}<br>E_t(y_t, \hat{y}_t)<br>&amp;= -y_{t} \log \hat{y}_{t} \\<br>E(y, \hat{y})<br>&amp;=\sum\limits_{t} E_t(y_t,\hat{y}_t) \\<br>&amp; = -\sum\limits_{t} y_{t} \log \hat{y}_{t}  \end{aligned}<br>$$<br>其中$y_t$是当前步的正确单词，$\hat{y}_t$是我们的预测，通常将整个序列（句子）视为一个训练样本，所以总的错误就是将每个时间步（单词）的错误相加起来。</p>
-<p><img src="/images/RNN详解1/rnn-bptt1.png" width="500px"></p>
+<p><img src="/images/RNN详解1/rnn-bptt1.png" width="500px" align="middle"></p>
 <p>我们的目标是计算损失对应于参数$U,V,W$的梯度，并通过SGD学习好的参数。对于一个训练样本，我们也将每个时间步的梯度相加$\frac{\partial{E}}{\partial{W}}=\sum_t \frac{\partial{E_t}}{\partial{W}}$。使用链式法则计算这些梯度，以$E_3$为例：<br>$$<br>\begin{aligned}<br>\frac{\partial{E_3}}{\partial{V}}<br>&amp;= \frac{\partial{E_3}}{\partial{\hat{y}_3}} \frac{\partial{\hat{y}_3}}{\partial{V}} \\<br>&amp;= \frac{\partial{E_3}}{\partial{\hat{y}_3}} \frac{\partial{\hat{y}_3}}{\partial{z_3}} \frac{\partial{z_3}}{\partial{V}} \\<br>&amp;= (\hat{y}_3 - y_3) \otimes s_3<br>\end{aligned}<br>$$<br>其中$z_3=Vs_3$，$\otimes$表示两个向量的外积，可见$\frac{\partial{E_3}}{\partial{V}}$仅依赖于当前时间步的值：$\hat{y}_3, y_3, s_3$。但对$\frac{\partial{E_3}}{\partial{W}}$则不同（对$U$而言也是这样）。写下链式规则，有<br>$$<br>\frac{\partial{E_3}}{\partial{W}} = \frac{\partial{E_3}}{\partial{\hat{y}_3}} \frac{\partial{\hat{y}_3}}{\partial{s_3}} \frac{\partial{s_3}}{\partial{W}}<br>$$<br>其中$s_3=tanh(Ux_t+Ws_2)$依赖于$s_2$，而$s_2$则依赖于$W$和$s_1$。所以在求$W$的导数时不能简单得将$s_2$取为常数，而需要再次使用链式法则，所以最后得到的是：<br>$$<br>\begin{aligned}<br>\frac{\partial E_3}{\partial W}<br>&amp;= \sum\limits_{k=0}^{3} \frac{\partial E_3}{\partial \hat{y}_3}\frac{\partial\hat{y}_3}{\partial s_3}\frac{\partial s_3}{\partial s_k}\frac{\partial s_k}{\partial W}\\<br>\end{aligned}<br>$$<br>将每一步对梯度的贡献相加。换句话说，因为$W$在每一步我们所关注的输出都被用到了，我们需要从$t=3$开始通过网络将梯度自始至终后向传播至$t=0$：</p>
-<p><img src="/images/RNN详解1/rnn-bptt-with-gradients.png" width="500px"></p>
+<p><img src="/images/RNN详解1/rnn-bptt-with-gradients.png" width="500px" align="middle"></p>
 <p>这恰与前向神经网络中标准的反向传播算法一样，关键的不同在于我们将$W$的梯度在每个时间步上相加（前向神经网络则是每一层正向传播，所以一个在时间维度上是深度网络，另一个则是空间维度上的）。传统的神经网络在层之间并不共享参数，所以无需求和。对于展开的循环神经网络，BPTT是标准反向传播的一个非常别致的名称。就像反向传播可以定义一个delta向量来传递后面部分，比如$\delta_2^{(3)}=\frac{\partial{E_3}}{\partial{z_2}}=\frac{\partial{E_3}}{\partial{s_3}}\frac{\partial{s_3}}{\partial{s_2}}\frac{\partial{s_2}}{\partial{z_2}}$，其中$z_2=Ux_2+Ws_1$，同样的公式也适用。</p>
 <h5 id="11-用SGD和BPTT训练RNN"><a href="#11-用SGD和BPTT训练RNN" class="headerlink" title="11. 用SGD和BPTT训练RNN"></a>11. 用SGD和BPTT训练RNN</h5><p>寻找最小化训练数据上总损失的参数$U,V,W$最通用的方法是SGD，也就是随机梯度下降。已经有很多研究探索优化SGD的方法，包括批处理、并行和自适应学习率。这里只实现一个简单的SGD。</p>
 <p>这里使用依时间后向传播(BPTT)算法来计算梯度。因为参数被神经网络的所有时间步所共享，因此每个输出的梯度不仅取决于当前步，还有前面的步骤，使用链式规则来计算。</p>
@@ -491,6 +491,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">deep learning</a>
               </li>
              
@@ -499,15 +503,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
