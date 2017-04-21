@@ -6,14 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>晓彬&#39;s Blog</title>
+  <title>DL与NLP中的注意力与存储器 | 晓彬&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="晓彬's Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="神经网络中的注意机制广义上基于人的视觉注意，它能以“高分辨率”关注图像的一个特定区域，而以“低分辨率”感知周围画面，并随时间调整聚焦点。注意力在神经网络中已有很长历史，尤其在图像识别领域，但直到最近才在经常用于NLP的循环神经网络中取得进展。">
+<meta name="keywords" content="DL,NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DL与NLP中的注意力与存储器">
+<meta property="og:url" content="http://yoursite.com/2017/04/21/DL与NLP中的注意力与存储器/index.html">
 <meta property="og:site_name" content="晓彬's Blog">
+<meta property="og:description" content="神经网络中的注意机制广义上基于人的视觉注意，它能以“高分辨率”关注图像的一个特定区域，而以“低分辨率”感知周围画面，并随时间调整聚焦点。注意力在神经网络中已有很长历史，尤其在图像识别领域，但直到最近才在经常用于NLP的循环神经网络中取得进展。">
+<meta property="og:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/NTM.png">
+<meta property="og:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/NMTbJLtAT.png">
+<meta property="og:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/AttentionMatrix.png">
+<meta property="og:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/STaT.png">
+<meta property="og:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/GaaFL.png">
+<meta property="og:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/TMtRaC.png">
+<meta property="og:updated_time" content="2017-04-21T15:25:13.965Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="晓彬's Blog">
+<meta name="twitter:title" content="DL与NLP中的注意力与存储器">
+<meta name="twitter:description" content="神经网络中的注意机制广义上基于人的视觉注意，它能以“高分辨率”关注图像的一个特定区域，而以“低分辨率”感知周围画面，并随时间调整聚焦点。注意力在神经网络中已有很长历史，尤其在图像识别领域，但直到最近才在经常用于NLP的循环神经网络中取得进展。">
+<meta name="twitter:image" content="http://yoursite.com/images/DL与NLP中的注意力与存储器/NTM.png">
   
     <link rel="alternative" href="/atom.xml" title="晓彬&#39;s Blog" type="application/atom+xml">
   
@@ -149,16 +161,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-DL与NLP中的注意力与存储器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-DL与NLP中的注意力与存储器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/DL与NLP中的注意力与存储器/">DL与NLP中的注意力与存储器</a>
+    <h1 class="article-title" itemprop="name">
+      DL与NLP中的注意力与存储器
     </h1>
   
 
@@ -171,12 +181,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>神经网络中的注意机制广义上基于人的视觉注意，它能以“高分辨率”关注图像的一个特定区域，而以“低分辨率”感知周围画面，并随时间调整聚焦点。注意力在神经网络中已有很长历史，尤其在图像识别领域，但直到最近才在经常用于NLP的循环神经网络中取得进展。<br>
-        
-          <a class="article-more-a" href="/2017/04/21/DL与NLP中的注意力与存储器/#more">more >></a>
-        
+        <p>神经网络中的注意机制广义上基于人的视觉注意，它能以“高分辨率”关注图像的一个特定区域，而以“低分辨率”感知周围画面，并随时间调整聚焦点。注意力在神经网络中已有很长历史，尤其在图像识别领域，但直到最近才在经常用于NLP的循环神经网络中取得进展。<br><a id="more"></a></p>
+<h5 id="1-注意力解决的问题"><a href="#1-注意力解决的问题" class="headerlink" title="1.注意力解决的问题"></a>1.注意力解决的问题</h5><p>注意力能做什么呢？以神经机器翻译(NMT)为例，传统的机器翻译系统通常非常复杂，需要耗费巨大工程来构建。而在NMT中，我们将句子的含义映射到定长向量中并基于这些向量生成翻译。通过尝试获得文本的高层含义，NMT系统能比其他方法更好地推广到新句子中；可能更重要的是，NMT系统更易于构建和训练，并且无需任何手工的特征设计。</p>
+<p>大多数NMT系统使用RNN将源语句（比如德语）编码到一个向量，然后基于此向量，同样使用RNN编码成目标语言（比如英语）。</p>
+<p><img src="/images/DL与NLP中的注意力与存储器/NTM.png" width="750px" align="middle"></p>
+<p>上图中，”Echt”，”Dickle”和”Kiste”单个单词输入到一个编码器中，在获得特殊的信号后，解码器开始产生翻译后的句子，直到一个特殊的句子结束标记产生。这里，$h$向量表示编码器内部的状态。编码器仅基于解码器的最后一个隐状态（上面的$h_3$），这个状态（向量）必须对任何需要知道的关于源语句的信息编码，必须完整地获取其含义，它被更学术地称为“句子嵌入”。事实上，若将不同句子的嵌入使用PCA或t-SNE在低维空间绘制出来，可以看到语义相近的短语最终互相非常靠近。</p>
+<p>能够用单个向量就将可能很长的句子的所有信息编码并且仅用此向量解码器就能产生好的翻译看起来依然十分不可思议。假设源语句有50个单词，翻译语句的第一个词很可能与源语句的第一个单词高度相关，这就意味着解码器必须考虑50步前的信息，并且将这个信息编进一个向量中。LSTM理论上可以解决这样的擦汗那个范围依赖关系，但实际中依然成问题。比如，研究者发现反转源语句序列（后向输入编码器）会产生明显更好的结果因为这缩短了解码器到编码器相关部分的路径。同样，将输入序列输进两次也会帮助网络更好地记住信息。</p>
+<p>反转输入句子是一种在实践能工作更好的技巧，但并非原理的解决方法。而注意力机制是很好的解决方案。使用注意力机制就无需将源语句编码进一个定长向量中，而允许解码器在输出生成的每一步“注意”源语句的不同部分。重要的是让模型基于输入语句和目前产生的内容学习要注意的内容。因此，在十分一致的语言中（比如英语和德语，词语的顺序十分相似），解码器很可能顺序选择注意的事情。这就是论文<a href="http://arxiv.org/abs/1409.0473" target="_blank" rel="external">Neural Translation by Jointly Learning to Align and Translation</a>的工作，如下图所示：</p>
+<p><img src="/images/DL与NLP中的注意力与存储器/NMTbJLtAT.png" width="400px" align="middle"></p>
+<p>这里，$y$是解码器产生的翻译词语，$x$是源语句词语。上图使用了双向RNN，这里重要的部分是现在每个解码器基于<strong>所有输入状态的加权组合</strong>输出单词$y<em>t$，而不仅是上一个状态。$a$是定义每个输入状态相应每个输出应注意的程度。比如假设$a</em>{3,2}$是一个很大的数，这就意味着解码器在产生目标句子的第三个单词时应着重关注第二个输入状态。$a$通常正则化为和为1，因此是在输入状态的分布。</p>
+<p>注意力的一个很大优势是它能将模型运行的情况解释和展现出来。例如，在翻译句子的时候通过展示注意力权重矩阵$a$，我们可以理解模型翻译的方式：</p>
+<p><img src="/images/DL与NLP中的注意力与存储器/AttentionMatrix.png" width="400px" align="middle"></p>
+<p>这里可以看出，在将法语翻译成英语的时候，网络顺序关注每个输入状态，但有时会在产生一个输出的时候关注两个单词，就比如想在将”la Syrie”翻译为”Syria”。</p>
+<h5 id="2-注意力的代价"><a href="#2-注意力的代价" class="headerlink" title="2.注意力的代价"></a>2.注意力的代价</h5><p>通过公式可以看出注意力有代价，因为需要为每个输入和输出组合计算注意力值。假设有50个单词的输入序列产生50个单词输出序列就需要计算2500个注意力值。这还不算糟，但如果做字符层次的计算并处理有成百上千的标记组成的序列，上面的注意力机制的代价就会变得难以接受。</p>
+<p>实际上这违反直觉，人类在关注一个事物的时候会忽略许多其他事情，但上面的模型并非如此。在决定要关注的内容前需要仔细查看每个事情，直观上等价于输出一个翻译的单词，然后返回浏览所有内存的所有文本来决定下一个产生的单词。这似乎是一种浪费，也并非人类的工作方式，事实上更类似于存储器访问，而非注意力，在某种成程度上是一种用词不当。但这并未阻止注意力机制的流行，并在许多任务上表现良好。</p>
+<p>注意力的另一种可选的方法是使用强化学习来预测需关注的大概位置，这个听起来更像人类的注意力，也是论文<a href="http://arxiv.org/abs/1406.6247" target="_blank" rel="external">Recurrent Models of Visual Attention</a>的工作。</p>
+<h5 id="3-机器翻译之外的注意力"><a href="#3-机器翻译之外的注意力" class="headerlink" title="3.机器翻译之外的注意力"></a>3.机器翻译之外的注意力</h5><p>上述的注意力机制可以应用到任何循环模型中。下面是更多的例子。</p>
+<p>论文<a href="http://arxiv.org/abs/1502.03044" target="_blank" rel="external">Show, Attend and Tell</a>里作者将注意力应用到图片描述生成的问题中。它们使用卷积神经网络(CNN)来对图片“编码”，然后用带注意力机制的RNN来产生一个描述。通过展现注意力权重，我们可以结束模型在生成一个单词时关注的内容：</p>
+<p><img src="/images/DL与NLP中的注意力与存储器/STaT.png" width="900px" align="middle"></p>
+<p>论文<a href="http://arxiv.org/abs/1412.7449" target="_blank" rel="external">Grammar as a Foreign Language</a>中，作者使用带注意力的RNN生成了句子解析树。展示的注意力矩阵给出了网络生成树时的内部状态：</p>
+<p><img src="/images/DL与NLP中的注意力与存储器/GaaFL.png" width="750px" align="middle"></p>
+<p>论文<a href="http://arxiv.org/abs/1506.03340" target="_blank" rel="external">Teaching Machines to Read and Comprehend</a>，作者使用RNN来阅读一段文本，一个（综合生成的问题），然后产生一个答案。通过展示的注意力矩阵可以看到网路在尝试寻找问题答案时关注的地方：</p>
+<p><img src="/images/DL与NLP中的注意力与存储器/TMtRaC.png" width="900px" align="middle"></p>
+<h5 id="4-注意力-（模糊）存储器？"><a href="#4-注意力-（模糊）存储器？" class="headerlink" title="4.注意力=（模糊）存储器？"></a>4.注意力=（模糊）存储器？</h5><p>注意力机制能使网络往回参考输入序列，不过以另一种方式理解，它仅仅是给网络访问内部存储器的入口，也就是编码器的隐状态。在这种理解中，与其说“关注”什么，不如说“取回”什么。不同于典型的存储器，这里存储的入口机制是软的，也就是说网络取回所有存储器地址的组合，这样就可以使用反向传播（尽管有使用采样方法而非反向传播计算梯度的非模糊方法）来端到端地训练网络。</p>
+<p>更复杂存储器结构现在正在发展。论文<a href="http://arxiv.org/abs/1503.08895" target="_blank" rel="external">End -to-End Memory Networks</a>使网络在输出前多次阅读相同的输入序列，而在每一步都更新存储内容。但是在网络参数某种方式持平的时候，端到端存储网络的存储器机制与这里展示的完全相同。</p>
+<p><a href="https://github.com/dennybritz/deeplearning-papernotes/blob/master/neural-turing-machines.md" target="_blank" rel="external">神经图灵机</a>使用相同形式的存储机制，但使用更精巧的基于内容和基于地址的两种取址方式，使得网络可以学习取址模式来执行像排序算法那样简单的计算机程序。</p>
+<p>未来存储器与注意力机制的区别很可能会更加清晰，可能沿着<a href="http://arxiv.org/abs/1505.00521" target="_blank" rel="external">强化学习神经图灵机</a>的路线，它尝试学习处理外部接口的访问模式。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>爱你么么哒<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -200,18 +264,78 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/21/DL与NLP中的注意力与存储器/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/21/DL与NLP中的注意力与存储器/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/19/Word2Vec详解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Word2Vec详解
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
 
 
@@ -219,335 +343,10 @@
 
 
   
-    <article id="post-Word2Vec详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/19/Word2Vec详解/">Word2Vec详解</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2017/04/19/Word2Vec详解/" class="archive-article-date">
-  	<time datetime="2017-04-18T20:37:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Word2Vec是谷歌2013年开源的自然语言处理的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，并且还满足一些向量语义的加减操作，比如$\mathbf{vec}(woman)+\mathbf{vec}(king)-\mathbf{vec}(man)\approx\mathbf{vec}(queen)$。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习处理的任务——很多都将词语用word2vec转化为向量作为输入，因此应用十分广泛。 </p>
-        
-          <a class="article-more-a" href="/2017/04/19/Word2Vec详解/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/19/Word2Vec详解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Git学习笔记1—入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/Git学习笔记1—入门/">Git学习笔记1—入门</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/12/Git学习笔记1—入门/" class="archive-article-date">
-  	<time datetime="2017-04-12T13:53:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Git是一个分布式的版本控制系统，这篇文章会介绍一些基础的用法，包括版本库的创建、添加文件、回退、远程同步等。</p>
-        
-          <a class="article-more-a" href="/2017/04/12/Git学习笔记1—入门/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/12/Git学习笔记1—入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-计算图上的微积分—反向传播" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/计算图上的微积分—反向传播/">计算图上的微积分—反向传播</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/计算图上的微积分—反向传播/" class="archive-article-date">
-  	<time datetime="2017-04-10T16:08:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>反向传播算法是在机器学习中应用十分广泛的算法，但很多人并未真正理解其重要性。这里会通过计算图来比较前向算法和反向算法的差异，从而展现反向传播的强大和优越之处。</p>
-        
-          <a class="article-more-a" href="/2017/04/11/计算图上的微积分—反向传播/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/计算图上的微积分—反向传播/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-RNN详解1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/RNN详解1/">RNN详解（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/10/RNN详解1/" class="archive-article-date">
-  	<time datetime="2017-04-10T13:01:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>RNN即循环神经网络，是在自然语言处理(NLP)和语音识别(SR)中应用非常广泛的一种模型。本文将会介绍RNN的原理以及相应的python代码实现。</p>
-        
-          <a class="article-more-a" href="/2017/04/10/RNN详解1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/10/RNN详解1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-配置数学公式环境" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/配置数学公式环境/">配置数学公式环境</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/10/配置数学公式环境/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:14:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>要在hexo中用markdown写出数学公式，需要安装mathjax插件，可通过npm直接安装</p>
-        
-          <a class="article-more-a" href="/2017/04/10/配置数学公式环境/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/10/配置数学公式环境/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -569,8 +368,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
