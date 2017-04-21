@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Word2Vec详解 | Infinite Possibility</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Word2Vec是谷歌2013年开源的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，还满足一些向量语义的加减操作。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习处理的任务——很多都将词语用word2vec转化为向量作为输入，应用十分广泛。">
-<meta name="keywords">
+  <meta name="description" content="Word2Vec是谷歌2013年开源的自然语言处理的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，并且还满足一些向量语义的加减操作，比如$\mathbf{vec}(woman)+\mathbf{vec}(king)-\mathbf{vec}(man)\approx\mathbf{vec}(queen)$。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Word2Vec详解">
 <meta property="og:url" content="http://yoursite.com/2017/04/19/Word2Vec详解/index.html">
 <meta property="og:site_name" content="Infinite Possibility">
-<meta property="og:description" content="Word2Vec是谷歌2013年开源的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，还满足一些向量语义的加减操作。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习处理的任务——很多都将词语用word2vec转化为向量作为输入，应用十分广泛。">
+<meta property="og:description" content="Word2Vec是谷歌2013年开源的自然语言处理的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，并且还满足一些向量语义的加减操作，比如$\mathbf{vec}(woman)+\mathbf{vec}(king)-\mathbf{vec}(man)\approx\mathbf{vec}(queen)$。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习">
 <meta property="og:image" content="http://yoursite.com/images/Word2Vec详解/co-occurrence-matrix.png">
 <meta property="og:image" content="http://yoursite.com/images/Word2Vec详解/word-vector-distribution.png">
 <meta property="og:image" content="http://yoursite.com/images/Word2Vec详解/word2vec-models.png">
 <meta property="og:image" content="http://yoursite.com/images/Word2Vec详解/hierachical-softmax.jpg">
 <meta property="og:image" content="http://yoursite.com/images/Word2Vec详解/hierachical-softmax-2.jpg">
 <meta property="og:image" content="http://yoursite.com/images/Word2Vec详解/hierarchical-softmax-3.jpg">
-<meta property="og:updated_time" content="2017-04-19T15:19:31.248Z">
+<meta property="og:updated_time" content="2017-04-21T00:18:04.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Word2Vec详解">
-<meta name="twitter:description" content="Word2Vec是谷歌2013年开源的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，还满足一些向量语义的加减操作。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习处理的任务——很多都将词语用word2vec转化为向量作为输入，应用十分广泛。">
+<meta name="twitter:description" content="Word2Vec是谷歌2013年开源的自然语言处理的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，并且还满足一些向量语义的加减操作，比如$\mathbf{vec}(woman)+\mathbf{vec}(king)-\mathbf{vec}(man)\approx\mathbf{vec}(queen)$。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习">
 <meta name="twitter:image" content="http://yoursite.com/images/Word2Vec详解/co-occurrence-matrix.png">
   
     <link rel="alternative" href="/atom.xml" title="Infinite Possibility" type="application/atom+xml">
@@ -181,9 +181,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Word2Vec是谷歌2013年开源的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，还满足一些向量语义的加减操作。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习处理的任务——很多都将词语用word2vec转化为向量作为输入，应用十分广泛。 </p>
+        <p>Word2Vec是谷歌2013年开源的自然语言处理的工具包，能够将词语映射到一个向量空间中，在这个空间中，语义相似的词语会靠得比较近，并且还满足一些向量语义的加减操作，比如$\mathbf{vec}(woman)+\mathbf{vec}(king)-\mathbf{vec}(man)\approx\mathbf{vec}(queen)$。由于其不错的性能，现在NLP任务中——尤其是那些用深度学习处理的任务——很多都将词语用word2vec转化为向量作为输入，因此应用十分广泛。 </p>
 <a id="more"></a>
-<h4 id="1-词向量"><a href="#1-词向量" class="headerlink" title="1.词向量"></a>1.词向量</h4><p>计算机要处理自然语言，首先要将语言数学化，将语言的单位词语表示成向量是一种很好的思路。</p>
+<h4 id="1-词向量"><a href="#1-词向量" class="headerlink" title="1.词向量"></a>1.词向量</h4><p>这篇文章是我在学习<a href="http://blog.csdn.net/itplus/article/details/37969519" target="_blank" rel="external">peghoty博客</a>和<a href="http://cs224d.stanford.edu/" target="_blank" rel="external">斯坦福cs224d课程</a>中关于word2vec内容时所做的笔记整理而成，点击相应链接可以看到他们的原文。<br>计算机在处理自然语言，首先要将语言数学化；现代计算机很擅长处理向量操作，因此将语言的单位词语表示成向量是一种很好的思路。</p>
 <h5 id="1-1one-hot向量"><a href="#1-1one-hot向量" class="headerlink" title="1.1one-hot向量"></a>1.1one-hot向量</h5><p>最简单的词向量模型是one-hot向量。每个词语在字典中都有唯一的索引，用字典长度的向量来表示每个词语，一个词语对应的向量除了在其索引位置为1外，其余都是0。比如：<br><span>$$\begin{aligned}
 w^{aardvark} = \begin{bmatrix} 1\\0\\0\\ \vdots \\0 \end{bmatrix},
 w^{a} = \begin{bmatrix} 0\\1\\0\\ \vdots \\0 \end{bmatrix},
@@ -419,6 +419,17 @@ g(w)
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -593,7 +604,7 @@ g(w)
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,11 +616,19 @@ g(w)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
             
             <div class="clearfix"></div>
